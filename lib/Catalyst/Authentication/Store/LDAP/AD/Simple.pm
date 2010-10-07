@@ -120,6 +120,7 @@ sub get_user {
     - trying to authenticate at Active Directory
     Arguments:
         login         => '...',
+        password      => '...'
     Returns: 0|1
         ldap_message->entries->[0] (all available user data retrieved from AD though LDAP)
 
