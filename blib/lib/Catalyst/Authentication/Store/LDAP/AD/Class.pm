@@ -15,7 +15,7 @@ Version 0.01
 
 =cut
 
-our $VERSION= "0.02";
+our $VERSION= "0.01";
 
 BEGIN {
     __PACKAGE__->mk_accessors(qw/config/);
