@@ -244,7 +244,7 @@ None known currently, please email the author if you find any.
 
 =head1 AUTHOR
 
-Jason Kuri (jayk@cpan.org)
+Andrey Chergik (andrey@chergik.ru)
 
 =head1 LICENSE
 
