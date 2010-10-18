@@ -15,7 +15,7 @@ Version 0.01
 
 =cut
 
-our $VERSION= "0.02";
+our $VERSION= "0.05";
 
 BEGIN {
     __PACKAGE__->mk_accessors(qw/config/);
@@ -32,7 +32,7 @@ sub new {
     ## make sure the store class is loaded.
     Catalyst::Utils::ensure_class_loaded( $config->{'store_user_class'} );
 
-    bless {config => $config}, $class;
+    bless( {config => $config}, $class );
 }
 
 sub from_session {
@@ -50,8 +50,6 @@ sub for_session {
 
 sub find_user {
     my ( $self, $authinfo, $c ) = @_;
-use Data::Dumper;
-warn "_" x 100 . "FIND_USER" . Dumper $authinfo;
     my $user = $self->config->{'store_user_class'}->new($self->{'config'}, $c);
 
     return $user->load($authinfo, $c);
