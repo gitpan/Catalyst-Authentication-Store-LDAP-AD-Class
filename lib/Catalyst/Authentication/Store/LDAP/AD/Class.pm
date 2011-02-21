@@ -15,50 +15,51 @@ Version 0.01
 
 =cut
 
-our $VERSION= "0.05";
+our $VERSION= "0.06";
 
 BEGIN {
-    __PACKAGE__->mk_accessors(qw/config/);
+	__PACKAGE__->mk_accessors(qw/config/);
 }
 
 sub new {
-    my ( $class, $config, $app ) = @_;
+	my ( $class, $config, $app ) = @_;
 
-    ## figure out if we are overriding the default store user class
-    $config->{'store_user_class'} =
-        (exists($config->{'store_user_class'})) ? $config->{'store_user_class'} :
-        "Catalyst::Authentication::Store::LDAP::AD::Class::User";
+	## figure out if we are overriding the default store user class
+	$config->{'store_user_class'} =
+		(exists($config->{'store_user_class'})) ? $config->{'store_user_class'} :
+		"Catalyst::Authentication::Store::LDAP::AD::Class::User";
 
-    ## make sure the store class is loaded.
-    Catalyst::Utils::ensure_class_loaded( $config->{'store_user_class'} );
+	## make sure the store class is loaded.
+	Catalyst::Utils::ensure_class_loaded( $config->{'store_user_class'} );
 
-    bless( {config => $config}, $class );
+	bless {config => $config}, $class;
 }
 
 sub from_session {
-    my ( $self, $c, $frozenuser ) = @_;
+	my ( $self, $c, $frozenuser ) = @_;
 
-    my $user = $self->config->{'store_user_class'}->new($self->{'config'}, $c);
-    return $user->from_session($frozenuser, $c);
+	my $user = $self->config->{'store_user_class'}->new($self->{'config'}, $c);
+	return $user->from_session($frozenuser, $c);
 }
 
 sub for_session {
-    my ($self, $c, $user) = @_;
+	my ($self, $c, $user) = @_;
 
-    return $user->for_session($c);
+	return $user->for_session($c);
 }
 
 sub find_user {
-    my ( $self, $authinfo, $c ) = @_;
-    my $user = $self->config->{'store_user_class'}->new($self->{'config'}, $c);
+	my ( $self, $authinfo, $c ) = @_;
 
-    return $user->load($authinfo, $c);
+	my $user = $self->config->{'store_user_class'}->new($self->{'config'}, $c);
+
+	return $user->load($authinfo, $c);
 }
 
 sub user_supports {
-    my $self = shift;
-    # this can work as a class method on the user class
-    $self->config->{'store_user_class'}->supports( @_ );
+	my $self = shift;
+	# this can work as a class method on the user class
+	$self->config->{'store_user_class'}->supports( @_ );
 }
 
 =head1 SYNOPSIS
@@ -66,29 +67,29 @@ sub user_supports {
 	-Setting up authentication (and others):
 
 		use Catalyst qw/
-	        ConfigLoader
-	        Authentication
-	        Session
-	        Session::State::Cookie
-	        Session::Store::DBIC
-	        Unicode
+			ConfigLoader
+			Authentication
+			Session
+			Session::State::Cookie
+			Session::Store::DBIC
+			Unicode
 		/;
 
 	-In YAML config:
 
 		'Plugin::Authentication':
-		    default:
-		        credential:
-		            class             :  'Password'
-		            password_type     :  'self_check'
-		            password_field    :  'password'
-		        store:
-		            class               :    'LDAP::AD::Class'
-		            ldap_domain         :    'some.domain.com'
-		            ldap_global_user    :    'cn=blabla,ou=blabla,dc=bla,dc=bla,.......'
-		            ldap_global_pass    :    'your AD password'
-		            ldap_timeout        :    3 # LDAP server connection timeout in seconds
-		            ldap_base           :    'dc=blabla,dc=blabla,.....' # LDAP base name
+			default:
+				credential:
+					class             :  'Password'
+					password_type     :  'self_check'
+					password_field    :  'password'
+				store:
+					class               :    'LDAP::AD::Class'
+					ldap_domain         :    'some.domain.com'
+					ldap_global_user    :    'cn=blabla,ou=blabla,dc=bla,dc=bla,.......'
+					ldap_global_pass    :    'your AD password'
+					ldap_timeout        :    3 # LDAP server connection timeout in seconds
+					ldap_base           :    'dc=blabla,dc=blabla,.....' # LDAP base name
 
 =head1 AUTHOR
 
@@ -105,7 +106,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Catalyst::Authentication::Store::LDAP::AD::Class
+	perldoc Catalyst::Authentication::Store::LDAP::AD::Class
 
 
 You can also look for information at:

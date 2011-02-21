@@ -1,9 +1,13 @@
 Changes
-MANIFEST
-Makefile.PL
-README
+ignore.txt
 lib/Catalyst/Authentication/Store/LDAP/AD/Class.pm
+lib/Catalyst/Authentication/Store/LDAP/AD/Class/User.pm
+lib/Catalyst/Authentication/Store/LDAP/AD/Simple.pm
+Makefile.PL
+MANIFEST
+README
 t/00-load.t
+t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t

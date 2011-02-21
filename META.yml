@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Catalyst-Authentication-Store-LDAP-AD-Class
-version:            0.05
+version:            0.01
 abstract:           The great new Catalyst::Authentication::Store::LDAP::AD::Class!
 author:
     - Andrey Chergik <andrey@chergik.ru>
@@ -11,7 +11,11 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
-    Test::More:  0
+    Catalyst::Plugin::Authentication:  0.10003
+    Class::Accessor::Fast:  0
+    Moose:                0
+    Net::LDAP:            0
+    Test::More:           0
 no_index:
     directory:
         - t

@@ -12,8 +12,12 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
-        'Test::More' => 0,
+        'Test::More'                        => 0,
+        'Moose'                             => 0,
+        'Class::Accessor::Fast'             => 0,
+        'Net::LDAP'                         => 0,
+        'Catalyst::Plugin::Authentication'  => '0.10003'
     },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'Catalyst-Authentication-Store-LDAP-AD-Class-*' },
+    dist     => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean    => { FILES => 'Catalyst-Authentication-Store-LDAP-AD-Class-*' },
 );
